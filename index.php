@@ -15,10 +15,17 @@ if(isset($url[1])){
 }
 //Chama as constatantes do arquivo config.php
 spl_autoload_register(function($class){
-
+    if(file_exists(LBS.$class.".php")){
+        require LBS.$class.".php";
+    }
 });
-
- echo $controller." ----- ".$method;
+//$obj = new Controllers();
+//echo $controller." ----- ".$method;
+$controllersPath = "Controllers/".$controller.".php";
+if(file_exists($controllersPath)){
+    //Instanciamos a classe
+    $controller = new $controller();
+}
 
 
 ?>
