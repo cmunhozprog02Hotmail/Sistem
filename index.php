@@ -8,7 +8,7 @@ $method = "";
 if(isset($url[0])){
     $controller = $url[0];
 }
-if(isset($url[1])){
+if(isset($url[1])){ 
     if(($url[1] != '')){
         $method = $url[1];
     }
