@@ -21,10 +21,13 @@ spl_autoload_register(function($class){
 });
 //$obj = new Controllers();
 //echo $controller." ----- ".$method;
-$controllersPath = "Controllers/".$controller.".php";
+$controllersPath = "Controllers/".$controller.'.php';
 if(file_exists($controllersPath)){
+    require $controllersPath;
     //Instanciamos a classe
     $controller = new $controller();
+} else {
+    
 }
 
 
