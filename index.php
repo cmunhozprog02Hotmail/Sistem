@@ -1,7 +1,11 @@
 <?php
 require "config.php";
+// PHP < 7
+//$url = isset($_GET["url"]) ? $_GET["url"]:"Index/index";
 
-$url = isset($_GET["url"]) ? $_GET["url"]:"Index/index";
+//PHP 7 ou superior
+$url = $_GET["url"] ?? "Index/index";
+
 $url = explode("/", $url);
 $controller = "";
 $method = "";
@@ -21,13 +25,23 @@ spl_autoload_register(function($class){
 });
 //$obj = new Controllers();
 //echo $controller." ----- ".$method;
+require 'Controllers/Errors';
+$erro = new Errors();
+
 $controllersPath = "Controllers/".$controller.'.php';
 if(file_exists($controllersPath)){
     require $controllersPath;
     //Instanciamos a classe
     $controller = new $controller();
+    if(isset($method)){
+        if(method_exists($controller, $method)){
+            $controller->{$method}();
+        }else{
+            $error->error();
+        }
+    }
 } else {
-    
+    $error->error();
 }
 
 
