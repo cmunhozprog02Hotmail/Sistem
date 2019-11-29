@@ -25,8 +25,8 @@ spl_autoload_register(function($class){
 });
 //$obj = new Controllers();
 //echo $controller." ----- ".$method;
-require 'Controllers/Errors';
-$erro = new Errors();
+require 'Controllers/Error.php';
+$error = new Errors();
 
 $controllersPath = "Controllers/".$controller.'.php';
 if(file_exists($controllersPath)){
@@ -37,11 +37,11 @@ if(file_exists($controllersPath)){
         if(method_exists($controller, $method)){
             $controller->{$method}();
         }else{
-            $error->error();
+            $error ->error();
         }
     }
 } else {
-    $error->error();
+    $error ->error();
 }
 
 

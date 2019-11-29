@@ -3,7 +3,7 @@
 class Errors 
 {
     public function error(){
-        echo "error";
+        echo "Error";
     }
 }
 
